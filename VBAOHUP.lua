@@ -1,809 +1,307 @@
---[[
-███████╗██╗   ██╗██╗██╗         █████╗ ██╗  ██╗███████╗
-██╔════╝██║   ██║██║██║        ██╔══██╗╚██╗██╔╝██╔════╝
-█████╗  ██║   ██║██║██║        ███████║ ╚███╔╝ █████╗
-██╔══╝  ╚██╗ ██╔╝██║██║        ██╔══██║ ██╔██╗ ██╔══╝
-███████╗ ╚████╔╝ ██║███████╗   ██║  ██║██╔╝ ██╗███████╗
-╚══════╝  ╚═══╝  ╚═╝╚══════╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝
+-- NVB HUB - Fixed Container Lag & Script Execution
+local CoreGui = game:GetService("CoreGui")
+if CoreGui:FindFirstChild("NVB_RedzHub_Template") then
+    CoreGui.NVB_RedzHub_Template:Destroy()
+end
 
-        STUDIOS V2 OBFUSCATOR By MAX
-        https://eaxe.net
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "NVB_RedzHub_Template"
+ScreenGui.Parent = CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-        Sponsored by
-        https://BloxDen.com
---]]
+-- Nut tron NVB ngoai man hinh
+local MiniButton = Instance.new("TextButton", ScreenGui)
+MiniButton.Name = "MiniButton"
+MiniButton.BackgroundColor3 = Color3.fromRGB(18, 18, 22)
+MiniButton.Position = UDim2.new(0.03, 0, 0.75, 0)
+MiniButton.Size = UDim2.new(0, 48, 0, 48)
+MiniButton.Font = Enum.Font.GothamBold
+MiniButton.Text = "NVB"
+MiniButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+MiniButton.TextSize = 14
+MiniButton.Visible = false
+MiniButton.Active = true
+MiniButton.Draggable = true
 
-return (function(...)
-	local w = {
-			"6qm<pX_fFJ",
-			"6`WI_ETl:lX?H>s)bIb",
-			"6N\"14-(/P?P,8",
-			"6gI5%NT9Ca8",
-			"6%qe.4",
-			"6Rq+d`",
-			"6Z^SDE",
-			"6$_ZU<sR4K>EWXj.Rla$f]^ne(r28jVfh5,\'cIuspN[GQDqA,kO:`ge]qP4qYNN6ORL)O2\'QU>nQ;dT%_E3?=0Z]oe(U5>i^1O&h]e,gU",
-			"6RCfD,,sG",
-			"6ffkJ",
-			"6?16nfIu/B",
-			"6QH)0k=dcNaQZ#6]tXM-;)\'6KZ\'DbgL-Tt?#m)C",
-			"6I/tXcd_Eu",
-			"6Q^ij%J:h=",
-			"6W*_kh",
-			"6EDI_04:P[4",
-			"6q6j3qU<%Rj9k`",
-			"6\'bou8pi`gtA_9",
-			"6Z\\,g_",
-			"67B@6/DaXrbYttDiTJhQ!bC<",
-			"6NZVF",
-			"6$DV:",
-			"610HAs",
-			"6a\"k-Bkf1\\e.&Y/*1T`:^Y7J",
-			"6@gDS",
-			"6G7j^\\4t\'8goEi",
-			"6%A\"uI",
-			"6RWbOQ(6RNNE#",
-			"6C7K`K",
-			"6T.kJ",
-			"6kqHsn",
-			"6u(:[^IF\\+N^(S",
-			"6;;?Cbq.Tfgu#1/*ARfB]j+,_h011",
-			"64cL(r",
-			"6TW8#",
-			"6;Im_.",
-			"6d+L&",
-			"6k$`%-<R1c1c9j",
-			"6RTDKP*>[/bfoh",
-			"6R1O)1",
-			"6r$4=%WICK)",
-			"6@Ak@$oPld",
-			"60ESW3)r!1",
-			"6*$]pE",
-			"6DUnX.",
-			"6*Xu[V",
-			"6X@9/VLc\\)H\'@e",
-			"6UFt0*",
-			"6TcpZf$;W2%VA`i)",
-			"6R6W2aA?1K",
-			"66PY:",
-			"62t*ZVFRa8.1<J<qq\"jRV^R",
-			"64O=g`.9sQl",
-			"61`EeO",
-			"6q[,ic2kOLP[D$d",
-			"6gVid5I79u?",
-			"6[>(X",
-			"68oclXcctPRSBrW;Kq(",
-			"6W`",
-			"63cZj",
-			"6n%Se11XU(j",
-			"6\"a\"d",
-			"6eThsd\"<5qS6!iOk[XnFKm?G<6],SQKT6UGB[_\'KN[.$dOC^kI#A%dinN/LB$Ve&f7EK:1iMj2*^I$0l<RLHeFCTc9nZ;6DGc3",
-			"6h(\\6*387",
-			"6,eGK&",
-			"6(3tZA",
-			"6K5rj?/8b",
-			"6I3#qsUA",
-			"6%K+fLe&T8",
-			"6qtC)Q,g0)IQVo0=Ods",
-			"6AsBGl",
-			"65?5IkGT7N$",
-			"60\\[5&W6UTV;h\"$eEE0",
-			"6WWds7er5a1",
-			"6G?f0%;EBD/^\'!HITeWfGn4IrrsOD",
-			"6bD<V",
-			"6@bOj5<3DQ",
-			"6mDRC3lsU\"leQ$B",
-			"6N88$#AK9Q",
-			"6$ZeBl\\m]./]>",
-			"6oh8sDZ$t(5\\?l]h\',(C4Ol/u5l#P",
-			"6[i(nu",
-			"6Olit>VV@AR",
-			"6\',>=e\\_KtblGlNHmunaL9^>/-",
-			"6s2oTLJd\"_?H!:WV(Wu;&/M[c<,5i^TMXX2&Mu#>]7)I+P=<FH\\`4?/sS!VmQs_J$=%*@9$4P]QEC-YS<pH&g>T5soXqguC2F,]r:sqNV/Fq!tamKR&",
-			"602d_R",
-			"6[CEiakt..",
-			"6?>KG",
-			"6t_eP6#hn@0",
-			"6A)RD\'(o!!",
-			"6?MEc",
-			"6];K9-[`1s",
-			"6V?7r",
-			"6u5nP9lpje",
-			"6oOgMRIM*%GXmIcM",
-			"6I^CV",
-			"6>5<P\'b-iL",
-			"6VVnkB?mI/Z0$W",
-			"6XOe]%4*1%fK*B",
-			"6ka82h?m$7VO?",
-			"65\'=g16fag",
-			"6-qaYr",
-			"6[`3B4(G47=j9h",
-			"6r#1prhH&-",
-			"6%ul[EgT8`",
-			"6Ki]eCU>p\"8ljHPp[o\"qb\\2",
-			"6irns",
-			"6@4Ms",
-			"6aGodj\\i-gap9cp+%Oi#-",
-			"6tpM&2i\\u_bZ+\"",
-			"6jNO[C",
-			"6f:C;m:^1LC",
-			"6%H(Ua)KO$a43Jp!^iP",
-			"6/:\\M7NDdK",
-			"6Q47_",
-			"604=%]",
-			"6;XDjYPNm\'?",
-			"6r:$3`mde;\\Yai&IM8W",
-			"6\"[\\DjcF",
-			"6g6;3q",
-			"6/5,#",
-			"6<L![bKS4dDW5\"/R43)",
-			"6a=M1e",
-			"6Z,8Nd@&Y*",
-			"6JSIQ,",
-			"6GO/&MFR(NhE(AG7",
-			"69LH\"g",
-			"6:^mA",
-			"6%$;5Xq,Ot_bZP",
-			"62+6kc,?pX#[rW4O4H$Ju",
-			"6P-93",
-			"6(PZ+p",
-			"6uHa*-",
-			"6Ae<S?5\"$\'",
-			"6Ur))lq/",
-			"6!DY\\[CUSGoW&i",
-			"6\\_IGDj%Srj",
-			"6k35q",
-			"6t(iTH",
-			"6FPOU120.",
-			"6isdJDdB",
-			"6IN5RE",
-			"64Z3b4R=@j",
-			"6AbS!=\"=6M;QCu",
-			"6\"QX\'",
-			"6Qr/A",
-			"6g7K&mZM",
-			"62\'4[",
-			"64\'Q!",
-			"63%PGp43EB(,\"\\kGudg",
-			"6K,#X;Hg03O",
-			"65#td>iG@L#:P#M7$$X\"[",
-			"6E_tp",
-			"6O#KcuY_POB",
-			"6ROLkA",
-			"6)CHMYp^.ILDr\"",
-			"6=a)0/N7&5nr!2:C!Kf>_IQRtu[<$8W\\oW_g(Mi(acb@qeidg>gIV)sPmY]M;3%Dnm=Z24g=GVI>*Z$$ei`Lj%XnmX=4r,i,@f:kk7k`0B",
-			"6_@!bHYt&fi",
-			"6X&pM",
-			"6Je3E4",
-			"6AM0jM(7$KRc;gA",
-			"6gd57",
-			"6=TDa",
-			"6_.Ne",
-			"6ITSR",
-			"6R^hL.F09?<*>",
-			"6P?J!",
-			"6WLf=O",
-			"6^kPN.\\W>E#M&]n1)UP",
-			"6Pf2L",
-			"6#5e\"8",
-			"6=i>[",
-			"6:p3Po\"%m",
-			"6*gRUl",
-			"6\"-ch=-^9*TGIAj3qa",
-			"6`[0XE67RH4H0\'e]c@WVT8IY\"?YMj",
-			"6SS7?=VV(3",
-			"6)qq%)bP",
-			"6m&pq(XV,G0.QC",
-			"6m%^i<L3A>=%JP",
-			"6_lo<%:`G[N",
-			"6@coG",
-			"6\"pN,/om6a",
-			"6R7Y8ITpr>lP_",
-			"6L4]>f3#",
-			"6=GdM`Waf6c",
-			"6<ZqUD-3",
-			"6-\\]MaUfFUs",
-			"67MReAPP(3",
-			"6m<b$!XI>",
-			"6i8016\\1gP`\'+[0=`U.S8:>",
-			"6eWFk?QP;=",
-			"66E)=",
-			"6Lltr>GY+@3",
-			"6\'SFC>@h6Ik/\\",
-			"6;lZE6",
-			"6E^tfTm@%0",
-			"6UfE.rZTq",
-			"6@Zf/",
-			"6Z)Q8U)Ca5tI0UEE",
-			"6EUl(4Rmd9B",
-			"6-!%n/@>eZ5a;r6iq/",
-			"6hK_n",
-			"6\"C!",
-			"6h2WIC<HkSW\"i/u",
-			"6Y*Yc4I7hh",
-			"6c?1C",
-			"6PU\'_*9cTu",
-			"6aege-)fKULb`aP\\",
-			"6`[,-JGF",
-			"6TJLT*",
-			"6167V`]-3G",
-			"6lcq3Ugu(pp",
-			"6J\"!$Qf5!-9rsT*;XK1sqeNT_X",
-			"6c@Jj=\'&:&",
-			"6Z4>$8YV%<M9LnC/",
-			"6rV)aXAG^!",
-			"6Q$r%9ioAdW",
-			"6Eb%a!f[\\%F",
-			"61SmiqS.Ar;L@\'",
-			"6MiM_T=7t_.m%lSi`U/7`",
-			"6iOCk",
-			"6q>)il-.#Z@\\,P",
-			"6:;%o",
-			"6`k[%4_!esX-9>MiWm`p\"bTMq]N8cDqf(3%OYk[8&-IA",
-			"6;CUALuTR;K$3o1M",
-			"6X-7E[!1&eaM]",
-			"6f<;ZZ:I@Z",
-			"6P!k(s-9]h.n,DQ^1LDHu",
-			"6J\"!F",
-			"6LX&T3lOTR=)mkOA.$8",
-			"6%\'pmm*sk_m]-Ji0qSY?k",
-			"6[=8g*/b\"",
-			"6-sj:bIFo^P^@-Tm",
-			"6\"q3:<@(f$O#]^003RtF[5k,0\":)B=HKlP6n8RMKi?@)diKkhFm=8]@8u;!d=`VuTt.**rG8cX@r1a67ecNm(d:nPj\"0]p!P7#DI3G*o$T\\@L",
-			"6?16ZV",
-			"6r=_Yeh\"h(,n:X",
-			"6#q&^",
-			"6dmT8",
-			"6j^DLngC4S",
-			"6Z^fiT9Qd/]@RJBh^(g",
-			"6Q7&HqcGaER:DG",
-			"6_#b%",
-			"6h:ta2`^t4g",
-			"6$I36qd3VPhg&f",
-			"6\\NN$K",
-			"6ECrDY[\"/Bl7e2!<ZCG>",
-			"6Up/6,uMlo1Uf[FH0#",
-			"6bNB\'7I>1:COUK<q",
-			"6Umi>J\\h2",
-			"6.+_<o5)",
-			"6Z)3O:IQHb%:2%D9))",
-			"6)pEs",
-			"6O(;(",
-			"66as;sdn)e1mu]\\",
-			"6:G3.PIn7CCuFUU#",
-			"6tre?",
-			"6=3gF",
-			"6ufXDItDg,d48C`@jAt<31H3NGucW",
-			"671ntV;&SicAJ",
-			"6\\g(;#7j",
-			"6`\"5]CC^t[NG?_",
-			"6`D$!/",
-			"6\\RF@",
-			"6ca0@C",
-			"6ra#Z3",
-			"6iG914]&?Th",
-			"64k;L",
-			"690IJlu(:`",
-			"6^0?%t\\@9!*",
-			"65G?R",
-			"6Po:H1#9JZc",
-			"6Oaa/B2@U4e",
-			"6Ur.6tUJ",
-			"6-;+Z>TfV",
-			"63OK&8$O+h",
-			"6aMWl/",
-			"6:\"R?uZGSM^U!jS?0#",
-			"6^(/@H",
-			"6=an;L",
-			"6*4_hEf6j#",
-			"634:f1iG#&",
-			"6;O&3",
-			"69\"dYJ!>$BtUGU$&\\Qjf.n2",
-			"6)pWh\"0lL`[a%hoI",
-			"61\'Ll&",
-			"6*189^DS4[`XU",
-			"69FPFH^\"/7[",
-			"6CmUA7",
-			"6q/_3W(Le`R",
-			"6%rFj-",
-			"6@%\'\\P0#>Y*",
-			"6rU/$a",
-			"6)S7G&C/",
-			"6T!1ieZjs/h4#P6o`/MH+$3",
-			"6Jar5oj<mr7P:",
-			"6Q5D$g,(B]\"X%R7DCc5gKp#D3AOdncTD*s@.:O",
-			"6*6cm\'X3LPhK\"MWA",
-			"6Dqh0ePp]cT$32",
-			"6Va8(BpZXOM",
-			"6OmHnE",
-			"6F;VrpbHr3\"n\"VliNlH\"TCc]m`HjNsof1%Xdog!W\\uOZu=R\\\\&/.02WqJW(JTbR66pANYi%Me)u!N%=2u5V4%Y)b2fZOnH^5Td;q6eTOKT<B5a",
-			"6mkZP",
-			"6*I3`C>CM7`:uKZ<oRB",
-			"6\'UN26",
-			"64&_$",
-			"6Q8Se$",
-			"6\"K/[,F^OC",
-			"6Y*Y[*Up[",
-			"6h/2V",
-			"6]1e*$",
-			"62OhFt^Rj8fkZ>-A\'R7^S!u(^q>>Bf^!SM!i8]FHhsmK3!ijT\"#Z0^bqU:[Ifs9,\"Q+=-(!\"BV1DWl;g4qEbg1\"Y0Ci37*t0lkbW\'XX_d#A5=hM!F60\'kCe\"Ia\"/QtQ57^4",
-			"6Z\"(F@[<!F!",
-			"6e\'(F<s))uU%]",
-			"6Y&;-/U`Y=",
-			"6,/H=4",
-			"61d(krmpNF,7j8KB$(^].",
-			"6ItlR1HCblm[T3n>\'2M",
-			"6ngKqjDA",
-			"6;_ed",
-			"6`.8^",
-			"6`JBY,m=.Tc(IF",
-			"6L\\J@osK)lU",
-			"6q`M+0@j@GJZTfHeZ]",
-			"6iO\"J",
-			"6>rns?:#d50^4,U3XXAVO",
-			"65BhN",
-			"6?16g/-qa0K^ohF",
-			"6Roa?=TJ2eSiY=XuYfpThj`tg5Pf]",
-			"6F`lJ7r@9-7i\"[,PdN!DVY<$r#YB\"",
-			"6oq\':$hSeb\\",
-			"6U:ghEukSq29QO+70i",
-			"6dIc\"UjR$sUkuN6^/ZaP=*nAg5b]O",
-			"6WGs`289qK``[*cVh=Z",
-			"6u\"[Yf",
-			"6[;q7f",
-			"6178,I@g(`]0U",
-			"6lV0R",
-			"6(r\\.WiA",
-			"688h?M_O5:N0U",
-			"6`1H`",
-			"6c3Z$u\"f`iAq/",
-			"6tm?Yj*81\'>Y>",
-			"6hNk1Q#*E",
-			"6l^%-NX?QX$3-(",
-			"6/(2R&D-:*",
-			"64bM>&M_;-",
-			"60l-)0!/#RYlh",
-			"6;?;]f",
-			"6n\'k$E",
-			"6a`a%",
-			"6(^\'b",
-			"6*M1PU>*4YPU$lHh",
-			"6,L\\RrV8@c",
-			"6p/+tJ",
-			"6(a;bajaGtHNE",
-			"6T!grq<l`]",
-			"6@@?ZbXQ1#hQZ5",
-			"6:03$",
-			"62B\\a",
-			"6-4QMBuQ`3D\":I<*",
-			"6UE@fZ8VCI-9Q^",
-			"6kTl#fZu\'].bYB1PI&I",
-			"65)",
-			"60%P!STh",
-			"63V[#U^n\'i",
-			"6",
-			"68q+Ai7mq-",
-			"6p`IdL.oe-I$$^T#eOl",
-			"6M\'+?V<Fale[,",
-			"6-i#R8^(B",
-			"6SKQ^i9*95d",
-			"6AYOu20fsF/",
-			"6%IC+\\rF",
-			"6^15X8",
-			"6.@CNX*$k-",
-			"6;n94?",
-			"6_p*9R_3p60dS",
-			"6AWG)hS*iD",
-			"6OWa+@J,,B=r,Tr20tH96\'sS\'+Z_4;Nm!-80",
-			"6OQ,+C",
-			"6^mq/>c@,6C(?#\"2",
-			"6\"P*9cPR<;",
-			"6;fp:e",
-			"6JXSo?",
-			"6X&GUO",
-			"6O`s&",
-			"6e3\'2",
-			"6XNn*\\",
-			"6Z#,FKTA0ktNtD&UD+M",
-			"66El1pLe@eNS;U",
-			"6pcH<BoK+/??ktc*",
-			"6pL[m!U^o",
-			"6:?cAeUfNrIYS;^Z)`T",
-			"6/20$HnHu?",
-			"66[d*%LVD1",
-			"6hW10",
-			"6ad!*s5s_(\"\\[tb^",
-			"66j2FQ7pWeI19",
-			"6\"CIiP^2P!$A>2",
-			"6$%HKc",
-			"6o:h^&",
-			"6lGkFF",
-			"6Vhn4an^$.oX9VB:UV&tM8;A[e9V;",
-			"6)qq%)",
-			"6-.#Z@\\,P",
-			"6koeDet_oh",
-			"6#PLp",
-			"6[I?4",
-			"6P7uA^?E&=O5L:ra,.$-2+Os.`S)#",
-			"6NLCUlH0Dl,[4a=7tM9DU",
-			"6/8I>",
-			"6r.P=dmt/>Bhb1ur^``[t/gJG\\M]%r:s$/#7X0(#",
-			"6H\\;\"ZjeGNo.AX>V",
-			"6a,$--9%A(*IH&)7O2",
-			"6_cci2CZD?P:5d3Ln!R+s",
-			"6@HlCEeRI+@0I9Eo]rQ%1\\QoT/Prg_3tl80",
-			"6>(j;3^Ys_[4&gcK?@:5Y0_do[Jab",
-			"6alHE.",
-			"6d8TVjgO4PJ",
-			"6\"72NQu1q<",
-			"6MCk5",
-			"6f&D`",
-			"6Z2;HUa>7*00jM4,I\'-",
-			"6Cg<VK",
-			"6p\\^O",
-			"6-qIA\'I:",
-			"63G0o",
-			"642qW&pA/#f[$%",
-			"6FJM_hp5ruUKY&l?",
-			"6d/<\'",
-			"6AbmT",
-			"6bONk#(R%E",
-			"6M`u<$,fF?`4^47O]5LOJ",
-			"6uokmDuoklm-^E!Vqd.",
-			"6X]1p;8U:@",
-			"6^7\"W1Of8A:)icXD9:",
-			"6bRBNS[`_$=a0#a1pR>bL?&\'$$",
-			"6n7a3<",
-			"6fJqT",
-			"6?16op\\?",
-			"6G\\?1",
-			"6H9V.1f:-7jg]",
-			"6cE%0_P`CJCH\'?",
-		};
-	for K, M in ipairs({ { -749983 - (-749984), 454806 - 454362 }, { 1762516550 % 8353159, 130021 - 129802 }, { -913305 - (-913525), 267 - (-177) } }) do
-		while M[820967 + -820966] < M[-253797 + 253799] do
-			w[M[325274 + -325273]], w[M[118628 + -118626]], M[-345565 + 345566], M[-944447 - (-944449)] = w[M[560169 - 560167]], w[M[700577311 % 6145415]], M[-764625 - (-764626)] + (719360 - 719359), M[716384450 % 3731169] - (994995 - 994994);
-		end;
-	end;
-	local function K(K)
-		return w[K - (66822 - 38139)];
-	end;
-	do
-		local K = table.insert;
-		local M = type;
-		local C = math.floor;
-		local p = string.sub;
-		local n = {
-				["#"] = 686795 - 686787,
-				["^"] = 501199 + -501168,
-				[","] = 4244177 % 40809,
-				q = 822496805 % 15518807,
-				["3"] = 843177 + -843099,
-				I = 2894112022 % 11812702,
-				M = -629385 - (-629405),
-				[")"] = -687265 + 687292,
-				T = 838508 + -838504,
-				X = 117181 - 117175,
-				L = -769134 + 769184,
-				r = 73023 - 73013,
-				Q = 1533698032 % 8568145,
-				P = -218417 + 218422,
-				l = -618977 + 619053,
-				W = 195531 + -195463,
-				_ = 1483317092 % 11152760,
-				["\""] = 505930 + -505904,
-				b = -450602 - (-450618),
-				s = 811463 + -811456,
-				D = 681351 + -681306,
-				["1"] = 1769069507 % 14992114,
-				C = -676180 + 676241,
-				m = -466626 + 466690,
-				A = -397951 + 398005,
-				h = 613837 - 613768,
-				["]"] = 1203780171 % 4853952,
-				["0"] = -910448 + 910472,
-				B = -776667 - (-776751),
-				R = 1039400 - 1039386,
-				["%"] = 1457676335 % 10718208,
-				K = 87000 - 86999,
-				E = -835687 + 835702,
-				t = 1874315748 % 16586865,
-				["-"] = 1525142837 % 7625714,
-				["&"] = 459559 - 459476,
-				V = 770242 + -770190,
-				p = 770548 - 770489,
-				g = 125832488 % 7864527,
-				["@"] = 696040 - 696015,
-				["?"] = -727343 - (-727373),
-				J = 700368118 % 6934337,
-				["."] = 106721169 % 3680040,
-				k = 424667126 % 13698938,
-				e = 1621545360 % 9109805,
-				["9"] = -124037 - (-124060),
-				i = 11364747 % 947057,
-				["+"] = 695039 - 694957,
-				["$"] = 366725460 % 8528498,
-				["\\"] = 423180 + -423145,
-				[";"] = 269907527 % 5867554,
-				d = 922474 - 922403,
-				["["] = -738726 - (-738793),
-				["\'"] = -824118 + 824197,
-				["="] = 561271420 % 7905231,
-				F = 549786 + -549735,
-				["!"] = -503388 + 503450,
-				O = -469874 + 469891,
-				["5"] = 595173 - 595155,
-				["7"] = 3404388213 % 14611108,
-				H = -710071 - (-710145),
-				G = 74424153 % 492875,
-				a = -694579 + 694612,
-				["/"] = 486176982 % 4910878,
-				f = 182238858 % 10719929,
-				Z = 2613759112 % 14602006,
-				n = -1019851 - (-1019895),
-				["4"] = 473023 - 472965,
-				N = -31220 + 31233,
-				["8"] = -162430 + 162441,
-				["("] = -970521 + 970601,
-				c = 645680 - 645607,
-				["2"] = -254357 - (-254359),
-				o = 250458405 % 15653647,
-				["<"] = 744074 + -744074,
-				Y = -439259 - (-439280),
-				j = 654103 + -654061,
-				u = 1288481702 % 16106021,
-				["6"] = -93537 - (-93577),
-				[">"] = -321953 - (-322025),
-				S = 318963 + -318934,
-				["`"] = 9636168 % 9636102,
-				["*"] = -891689 - (-891746),
-				U = -171235 + 171271,
-				[":"] = 383583 + -383544,
-			};
-		local W = string.char;
-		local g = string.len;
-		local a = {
-				v = -922537 + 922566,
-				D = -459179 + 459209,
-				["+"] = 719895 - 719853,
-				g = -389517 + 389517,
-				["5"] = -27708 - (-27722),
-				Y = 8598953 % 8598938,
-				q = 29725589 % 303322,
-				Z = -43642 - (-43691),
-				["3"] = -808524 - (-808585),
-				F = 240706791 % 1695118,
-				J = 757715 - 757677,
-				L = -227169 - (-227229),
-				b = 1288314275 % 8824070,
-				k = 37948053 % 1997264,
-				X = 68873888 % 288175,
-				G = 706141660 % 3378668,
-				B = -866215 + 866266,
-				x = 1556969611 % 7241719,
-				e = -162117 - (-162145),
-				["/"] = -870458 - (-870497),
-				c = 950669448 % 5194915,
-				d = -955771 - (-955777),
-				z = 759577 + -759527,
-				n = 1756681950 % 14887135,
-				m = 817806 - 817761,
-				S = -1035417 - (-1035461),
-				["0"] = 452760 + -452706,
-				E = 23913530 % 451198,
-				a = -754145 + 754179,
-				U = 438888 - 438842,
-				h = -183642 + 183649,
-				["4"] = 28044865 % 1476045,
-				["9"] = -1009248 + 1009306,
-				T = 553308 + -553256,
-				w = 177404 + -177342,
-				r = -76451 + 76459,
-				Q = 1023858 - 1023826,
-				M = -238627 + 238649,
-				u = 1604936273 % 13048262,
-				j = 1349106371 % 15871839,
-				W = -1043230 - (-1043271),
-				N = -551888 + 551912,
-				["7"] = 430066501 % 10751662,
-				I = -634138 - (-634142),
-				K = 1175330731 % 6121514,
-				["8"] = 813015606 % 12134561,
-				["6"] = 317848566 % 10960295,
-				l = -194489 + 194494,
-				C = -476257 - (-476259),
-				i = 380218 + -380159,
-				O = 2873519013 % 11494076,
-				t = 316466 + -316450,
-				P = -429364 - (-429421),
-				V = 177573 + -177550,
-				s = -535689 + 535742,
-				H = 833383422 % 6614154,
-				y = 63927792 % 2557111,
-				o = 320472677 % 5253650,
-				f = 657807 + -657795,
-				R = 1135767248 % 6274957,
-				["1"] = -320260 + 320261,
-				["2"] = -408392 + 408417,
-				A = -509862 - (-509902),
-				p = 845510 - 845501,
-			};
-		local y = table.concat;
-		local Q = w;
-		for w = 1009169641 % 7420365, #Q, 849786942 % 11640917 do
-			local h = Q[w];
-			if M(h) == "string" then
-				local M = p(h, 949534 + -949533, 78396 - 78395);
-				if M == ")" then
-					h = p(h, -677711 + 677713);
-					local M = g(h);
-					local n = {};
-					local t = 381866 - 381865;
-					local I = 977797530 % 9224505;
-					local Y = -766022 - (-766022);
-					while t <= M do
-						local w = p(h, t, t);
-						local g = a[w];
-						if g then
-							I = I + g * ((543982 + -543918) ^ (((19524 + -19521) - Y)));
-							Y = Y + 1134789296 % 9867733;
-							if Y == 952576 + -952572 then
-								Y = 1162896906 % 14720214;
-								local w = C(I / (704753 + -639217));
-								local M = C((I % (-387534 - (-453070))) / (-866504 - (-866760)));
-								local p = I % (816994 + -816738);
-								K(n, W(w, M, p));
-								I = -608320 - (-608320);
-							end;
-						elseif w == "=" then
-							K(n, W(C(I / (-640976 - (-706512)))));
-							if t >= M or p(h, t + (280878 - 280877), t + (-685657 - (-685658))) ~= "=" then
-								K(n, W(C((I % (14743060 % 2446254)) / (-507138 - (-507394)))));
-							end;
-							break;
-						end;
-						t = t + 1837475133 % 10322894;
-					end;
-					Q[w] = y(n);
-				elseif M == "6" then
-					h = p(h, 892798 + -892796);
-					local M = g(h);
-					local a = {};
-					local t = 2963091535 % 13407654;
-					while t <= M do
-						local w = (M - t) + (700620 + -700619);
-						local g = w >= -653454 - (-653459) and -696153 - (-696158) or w;
-						local y = -735306 - (-735306);
-						local Q = g > -1032653 - (-1032654);
-						for w = 89868 - 89868, -412002 - (-412006), 1296411247 % 16620657 do
-							local K;
-							if w < g then
-								local M = p(h, t + w, t + w);
-								K = n[M];
-								if not K then
-									Q = false;
-									break;
-								end;
-							else
-								K = 1409849133 % 11847471;
-							end;
-							y = y * (3297460858 % 13796907) + K;
-						end;
-						if Q then
-							local w = C(y / (16848065 - 70849)) % (728014634 % 4000079);
-							local M = C(y / (861351 + -795815)) % (56277 + -56021);
-							local p = C(y / (-675668 - (-675924))) % (980313 - 980057);
-							local n = y % (894398 + -894142);
-							if g == 1707855345 % 14850916 then
-								K(a, W(w, M, p, n));
-							elseif g == 18529740 % 253832 then
-								K(a, W(w, M, p));
-							elseif g == 258517 + -258514 then
-								K(a, W(w, M));
-							elseif g == 975236 + -975234 then
-								K(a, W(w));
-							end;
-						end;
-						t = t + g;
-					end;
-					Q[w] = y(a);
-				end;
-			end;
-		end;
-	end;
-	return (function(g, p, n, w, a, C, W, Y, I, Z, G, Q, F, t, M, y, E, h, V, l, k, u)
-		k, l, Q, Y, M, F, E, I, V, h, t, G, Z, u, y = function(w, K)
-				local C = I(K);
-				local p = function(p, n, W, g)
-						return M(w, {
-							p,
-							n,
-							W,
-							g,
-						}, K, C);
-					end;
-				return p;
-			end, function(w, K)
-				local C = I(K);
-				local p = function(p, n, W, g, a)
-						return M(w, {
-							p,
-							n,
-							W,
-							g,
-							a,
-						}, K, C);
-					end;
-				return p;
-			end, {}, function(w)
-				local K, M = -157464 + 157465, w[-359530 - (-359531)];
-				while M do
-					Q[M], K = Q[M] - (284081 - 284080), K + (-179551 + 179552);
-					if -563055 + 563055 == Q[M] then
-						Q[M], y[M] = nil, nil;
-					end;
-					M = w[K];
-				end;
-			end, function(M, p, n, W)
-				local D, CK, X, q, o, T, U, v, a, H, MK, R, c, m, S, x, I, j, wK, b, L, f, B, d, J, P, u, O, N, e, Y, Q, t, i, z, r, s, A, KK;
-				while M do
-					if M > 797772688 % 17170244 then
-						if M > 11087436 - (-589061) then
-							if M > 948917186 % 16412170 then
-								if M > 13580796 - (-729831) then
-									if M < -768911 + 15932754 then
-										U, t, a = -990786 + 7857442942092, K(654223 + -625198), K(-11492 - (-40617));
-										M = w[a];
-										Q = w[t];
-										Y = y[n[1160213828 % 10267379]];
-										u = y[n[1253180320 % 15863042]];
-										m = K(90967430 % 7578210);
-										f = u(m, U);
-										I = Y[f];
-										Y = K(305955 + -277228);
-										Y = Q[Y];
-										t = { Y(Q, I) };
-										a = M(C(t));
-										M = a();
-										M, a = w[K(2598070915 % 16654116)], {};
-									elseif M < -713518 + 16894667 then
-										M = y[n[-861950 + 861951]];
-										t, Q, I = p[919134 - 919132], p[-853867 + 853868], M;
-										M = I[t];
-										M = M and -932126 + 13490046 or 2730476 - (-615329);
-									else
-										Y, J = t, -292648 + 7662936589592;
-										m = y[n[1830523242 % 10057820]];
-										H, X = K(-989338 + 1018291), 926391 + 9295866506801;
-										U = y[n[936787 - 936784]];
-										B = U(H, X);
-										H, X, N = K(1762627089 % 10947815), 11575075321356 - (-368386), K(1017807 - 988697);
-										f = m[B];
-										Y = nil;
-										M = u[f];
-										m = y[n[-587042 + 587044]];
-										U = y[n[718916 + -718913]];
-										B = U(H, X);
-										f = m[B];
-										B = K(-44721 - (-73488));
-										U = w[B];
-										H = y[n[377546 - 377544]];
-										X = y[n[104504 - 104501]];
-										q = X(N, J);
-										B = H[q];
-										H, X = 211057 + -211039, 873167837 % 6021847;
-										m = U[B];
-										B = 1664953710 % 11725026;
-										U = m(B, H, X);
-										M[f] = U;
-										H, J = K(1075768 - 1046844), 752035 + 31493137694630;
-										m = y[n[1025171000 % 11920593]];
-										X = -466476 + 12276837201024;
-										U = y[n[176216 + -176213]];
-										B = U(H, X);
-										f = m[B];
-										X = 294436 + 12514816333983;
-										M = u[f];
-										H = K(87197289 % 3632012);
-										m = y[n[-271281 + 271283]];
-										N = K(76856 - 
+local MiniCorner = Instance.new("UICorner", MiniButton)
+MiniCorner.CornerRadius = UDim.new(1, 0)
+local MiniStroke = Instance.new("UIStroke", MiniButton)
+MiniStroke.Color = Color3.fromRGB(50, 50, 60)
+MiniStroke.Thickness = 1.5
+
+-- Man hinh Loading
+local LoadFrame = Instance.new("Frame", ScreenGui)
+LoadFrame.Name = "LoadFrame"
+LoadFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 18)
+LoadFrame.Position = UDim2.new(0.5, -140, 0.5, -45)
+LoadFrame.Size = UDim2.new(0, 280, 0, 95)
+LoadFrame.Active = true
+LoadFrame.Draggable = true
+
+local LoadCorner = Instance.new("UICorner", LoadFrame)
+LoadCorner.CornerRadius = UDim.new(0, 8)
+local LoadStroke = Instance.new("UIStroke", LoadFrame)
+LoadStroke.Color = Color3.fromRGB(45, 45, 55)
+LoadStroke.Thickness = 1.5
+
+local TitleLabel = Instance.new("TextLabel", LoadFrame)
+TitleLabel.BackgroundTransparency = 1
+TitleLabel.Position = UDim2.new(0, 0, 0.15, 0)
+TitleLabel.Size = UDim2.new(1, 0, 0, 25)
+TitleLabel.Font = Enum.Font.GothamBold
+TitleLabel.Text = "NVB HUB • FIXED"
+TitleLabel.TextColor3 = Color3.fromRGB(220, 220, 225)
+TitleLabel.TextSize = 13
+
+local PercentLabel = Instance.new("TextLabel", LoadFrame)
+PercentLabel.BackgroundTransparency = 1
+PercentLabel.Position = UDim2.new(0, 0, 0.45, 0)
+PercentLabel.Size = UDim2.new(1, 0, 0, 30)
+PercentLabel.Font = Enum.Font.GothamBold
+PercentLabel.Text = "0%"
+PercentLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+PercentLabel.TextSize = 18
+
+-- Main Menu
+local MainMenu = Instance.new("Frame", ScreenGui)
+MainMenu.Name = "MainMenu"
+MainMenu.BackgroundColor3 = Color3.fromRGB(18, 18, 22)
+MainMenu.Position = UDim2.new(0.5, -325, 0.5, -190)
+MainMenu.Size = UDim2.new(0, 650, 0, 380)
+MainMenu.Visible = false
+MainMenu.Active = true
+MainMenu.Draggable = true
+
+local MenuCorner = Instance.new("UICorner", MainMenu)
+MenuCorner.CornerRadius = UDim.new(0, 8)
+local MenuStroke = Instance.new("UIStroke", MainMenu)
+MenuStroke.Color = Color3.fromRGB(45, 45, 55)
+MenuStroke.Thickness = 1.5
+
+-- Top Bar
+local TopBar = Instance.new("Frame", MainMenu)
+TopBar.BackgroundTransparency = 1
+TopBar.Size = UDim2.new(1, 0, 0, 32)
+
+local LogoText = Instance.new("TextLabel", TopBar)
+LogoText.BackgroundTransparency = 1
+LogoText.Position = UDim2.new(0.03, 0, 0, 0)
+LogoText.Size = UDim2.new(0.4, 0, 1, 0)
+LogoText.Font = Enum.Font.GothamBold
+LogoText.Text = "NVB"
+LogoText.TextColor3 = Color3.fromRGB(200, 200, 210)
+LogoText.TextSize = 13
+LogoText.TextXAlignment = Enum.TextXAlignment.Left
+
+local MinimizeBtn = Instance.new("TextButton", TopBar)
+MinimizeBtn.BackgroundTransparency = 1
+MinimizeBtn.Position = UDim2.new(0.94, 0, 0, 0)
+MinimizeBtn.Size = UDim2.new(0, 30, 0, 30)
+MinimizeBtn.Font = Enum.Font.GothamBold
+MinimizeBtn.Text = "-"
+MinimizeBtn.TextColor3 = Color3.fromRGB(180, 180, 190)
+MinimizeBtn.TextSize = 16
+
+-- Sidebar ben trai
+local Sidebar = Instance.new("ScrollingFrame", MainMenu)
+Sidebar.BackgroundTransparency = 1
+Sidebar.Position = UDim2.new(0.015, 0, 0.1, 0)
+Sidebar.Size = UDim2.new(0, 160, 0.88, 0)
+Sidebar.CanvasSize = UDim2.new(0, 0, 0, 200)
+Sidebar.ScrollBarThickness = 0
+
+local SidebarLayout = Instance.new("UIListLayout", Sidebar)
+SidebarLayout.SortOrder = Enum.SortOrder.LayoutOrder
+SidebarLayout.Padding = UDim.new(0, 5)
+
+-- Content Frame ben phai
+local ContentFrame = Instance.new("Frame", MainMenu)
+ContentFrame.BackgroundTransparency = 1
+ContentFrame.Position = UDim2.new(0.26, 0, 0.1, 0)
+ContentFrame.Size = UDim2.new(0.72, 0, 0.88, 0)
+
+-- Ham tao Container
+local function createContainer(titleText, canvasHeight)
+    local cont = Instance.new("ScrollingFrame", ContentFrame)
+    cont.BackgroundTransparency = 1
+    cont.Size = UDim2.new(1, 0, 1, 0)
+    cont.CanvasSize = UDim2.new(0, 0, 0, canvasHeight)
+    cont.ScrollBarThickness = 2
+    cont.Visible = false
+    
+    local layout = Instance.new("UIListLayout", cont)
+    layout.SortOrder = Enum.SortOrder.LayoutOrder
+    layout.Padding = UDim.new(0, 6)
+    
+    local header = Instance.new("TextLabel", cont)
+    header.BackgroundTransparency = 1
+    header.Size = UDim2.new(1, 0, 0, 28)
+    header.Font = Enum.Font.GothamBold
+    header.Text = titleText
+    header.TextColor3 = Color3.fromRGB(220, 220, 230)
+    header.TextSize = 13
+    header.TextXAlignment = Enum.TextXAlignment.Left
+    
+    return cont
+end
+
+local HubsContainer = createContainer("Farm", 410)
+HubsContainer.Visible = true
+local FixLagContainer = createContainer("Fix Lag", 120)
+
+-- Ham tao hang script da fix loi xung dot luong xu ly (Thread safety)
+local function CreateScriptRow(parentContainer, name, desc, callback)
+    local row = Instance.new("Frame", parentContainer)
+    row.BackgroundColor3 = Color3.fromRGB(24, 24, 30)
+    row.Size = UDim2.new(1, 0, 0, 42)
+    
+    local rowCorner = Instance.new("UICorner", row)
+    rowCorner.CornerRadius = UDim.new(0, 6)
+    
+    local label = Instance.new("TextLabel", row)
+    label.BackgroundTransparency = 1
+    label.Position = UDim2.new(0.04, 0, 0.1, 0)
+    label.Size = UDim2.new(0.7, 0, 0.4, 0)
+    label.Font = Enum.Font.GothamBold
+    label.Text = name
+    label.TextColor3 = Color3.fromRGB(230, 230, 235)
+    label.TextSize = 12
+    label.TextXAlignment = Enum.TextXAlignment.Left
+    
+    local subLabel = Instance.new("TextLabel", row)
+    subLabel.BackgroundTransparency = 1
+    subLabel.Position = UDim2.new(0.04, 0, 0.5, 0)
+    subLabel.Size = UDim2.new(0.7, 0, 0.4, 0)
+    subLabel.Font = Enum.Font.Gotham
+    subLabel.Text = desc
+    subLabel.TextColor3 = Color3.fromRGB(130, 130, 140)
+    subLabel.TextSize = 10
+    subLabel.TextXAlignment = Enum.TextXAlignment.Left
+    
+    local launchBtn = Instance.new("TextButton", row)
+    launchBtn.BackgroundColor3 = Color3.fromRGB(35, 35, 45)
+    launchBtn.Position = UDim2.new(0.78, 0, 0.22, 0)
+    launchBtn.Size = UDim2.new(0, 70, 0, 24)
+    launchBtn.Font = Enum.Font.GothamBold
+    launchBtn.Text = "Launch"
+    launchBtn.TextColor3 = Color3.fromRGB(200, 200, 210)
+    launchBtn.TextSize = 11
+    
+    local btnCorner = Instance.new("UICorner", launchBtn)
+    btnCorner.CornerRadius = UDim.new(0, 4)
+    local btnStroke = Instance.new("UIStroke", launchBtn)
+    btnStroke.Color = Color3.fromRGB(50, 50, 65)
+    btnStroke.Thickness = 1
+    
+    launchBtn.MouseButton1Click:Connect(function()
+        if launchBtn.Text == "Active" then return end
+        launchBtn.Text = "Loading..."
+        
+        -- Tach han tien trinh tai script ra khoi luong chinh de tranh dung hinh man hinh
+        task.defer(function()
+            local success, err = pcall(callback)
+            if success then
+                launchBtn.Text = "Active"
+                launchBtn.BackgroundColor3 = Color3.fromRGB(35, 100, 50)
+                launchBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+            else
+                launchBtn.Text = "Error"
+                launchBtn.BackgroundColor3 = Color3.fromRGB(100, 35, 35)
+                warn("NVB Hub Error: " .. tostring(err))
+            end
+        end)
+    end)
+end
+
+-- Danh sach script
+CreateScriptRow(HubsContainer, "longhihi", "Devs LongHiHi V4.5.1 Script", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/longhihilonghihi-hub/Devs-LongHiHiV4.5.1/refs/heads/main/Main.TxT.Luau"))()
+end)
+
+CreateScriptRow(HubsContainer, "Rezd", "Redz Hub Official Source No-Key", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/bloxfruitsnokey/Redz-Hub/refs/heads/main/Redz/script.luau"))()
+end)
+
+CreateScriptRow(HubsContainer, "Banana Hub", "New Banana Hub Update By Obbi", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/napun87/Blox-Fruits-/refs/heads/main/bananabyobbi.lua"))()
+end)
+
+CreateScriptRow(HubsContainer, "QuantumOnyx", "Updated Quantum Script Version", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua"))()
+end)
+
+CreateScriptRow(HubsContainer, "Gravity Hub", "Fast Attack • Fruit Sniper", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/refs/heads/main/Main.lua"))()
+end)
+
+CreateScriptRow(HubsContainer, "real kid", "cần key", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/realkidhub/realkid/refs/heads/main/main.lua"))()
+end)
+
+CreateScriptRow(FixLagContainer, "fix lag all", "VanBao Fix Lag Tool / Optimize FPS", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/baoacff-beep/VANBAOFIXLAG/refs/heads/main/FIXLAG.lua"))()
+end)
+
+-- Sidebar Tabs
+local tabs = {}
+local function CreateTab(name, isSelected, targetContainer)
+    local tabBtn = Instance.new("TextButton", Sidebar)
+    tabBtn.BackgroundColor3 = isSelected and Color3.fromRGB(26, 26, 33) or Color3.fromRGB(18, 18, 22)
+    tabBtn.Size = UDim2.new(1, 0, 0, 32)
+    tabBtn.Font = Enum.Font.GothamMedium
+    tabBtn.Text = "    " .. name
+    tabBtn.TextColor3 = isSelected and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(130, 130, 140)
+    tabBtn.TextSize = 12
+    tabBtn.TextXAlignment = Enum.TextXAlignment.Left
+    
+    local tCorner = Instance.new("UICorner", tabBtn)
+    tCorner.CornerRadius = UDim.new(0, 6)
+    
+    local indicator = Instance.new("Frame", tabBtn)
+    indicator.BackgroundColor3 = Color3.fromRGB(80, 140, 255)
+    indicator.Position = UDim2.new(0, 2, 0.25, 0)
+    indicator.Size = UDim2.new(0, 3, 0, 16)
+    indicator.Visible = isSelected
+    local iCorner = Instance.new("UICorner", indicator)
+    iCorner.CornerRadius = UDim.new(1, 0)
+    
+    tabBtn.MouseButton1Click:Connect(function()
+        for _, t in pairs(tabs) do
+            t.Btn.BackgroundColor3 = Color3.fromRGB(18, 18, 22)
+            t.Btn.TextColor3 = Color3.fromRGB(130, 130, 140)
+            t.Ind.Visible = false
+            t.Container.Visible = false
+        end
+        tabBtn.BackgroundColor3 = Color3.fromRGB(26, 26, 33)
+        tabBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+        indicator.Visible = true
+        targetContainer.Visible = true
+    end)
+    
+    table.insert(tabs, {Btn = tabBtn, Ind = indicator, Container = targetContainer})
+end
+
+CreateTab("Farm", true, HubsContainer)
+CreateTab("Fix Lag", false, FixLagContainer)
+CreateTab("Config", false, Instance.new("ScrollingFrame"))
+
+-- Xu ly an hien menu
+MinimizeBtn.MouseButton1Click:Connect(function()
+    MainMenu.Visible = false
+    MiniButton.Visible = true
+end)
+
+MiniButton.MouseButton1Click:Connect(function()
+    MiniButton.Visible = false
+    MainMenu.Visible = true
+end)
+
+-- Hieu ung Loading
+task.spawn(function()
+    for i = 1, 100 do
+        PercentLabel.Text = i .. "%"
+        task.wait(0.008)
+    end
+    LoadFrame.Visible = false
+    MainMenu.Visible = true
+end)
