@@ -1,307 +1,33 @@
--- NVB HUB - Fixed Container Lag & Script Execution
-local CoreGui = game:GetService("CoreGui")
-if CoreGui:FindFirstChild("NVB_RedzHub_Template") then
-    CoreGui.NVB_RedzHub_Template:Destroy()
+local ioIjlOiLL=(getfenv and getfenv(1)) or _ENV or _G
+local ioIOjOiilj,iOLoLOILOO=string.byte,string.char
+local function LOj1oji1ll(LoO1o0LIj,Ilil111ol)
+local Lolo0lO0oOjI=""
+local j0IOLi0l0=#Ilil111ol
+for LiOILOLlOLo=1,#LoO1o0LIj do Lolo0lO0oOjI=Lolo0lO0oOjI..iOLoLOILOO((ioIOjOiilj(LoO1o0LIj,LiOILOLlOLo)-ioIOjOiilj(Ilil111ol,(LiOILOLlOLo-1)%j0IOLi0l0+1))%256) end
+return Lolo0lO0oOjI
 end
-
-local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "NVB_RedzHub_Template"
-ScreenGui.Parent = CoreGui
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-
--- Nut tron NVB ngoai man hinh
-local MiniButton = Instance.new("TextButton", ScreenGui)
-MiniButton.Name = "MiniButton"
-MiniButton.BackgroundColor3 = Color3.fromRGB(18, 18, 22)
-MiniButton.Position = UDim2.new(0.03, 0, 0.75, 0)
-MiniButton.Size = UDim2.new(0, 48, 0, 48)
-MiniButton.Font = Enum.Font.GothamBold
-MiniButton.Text = "NVB"
-MiniButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-MiniButton.TextSize = 14
-MiniButton.Visible = false
-MiniButton.Active = true
-MiniButton.Draggable = true
-
-local MiniCorner = Instance.new("UICorner", MiniButton)
-MiniCorner.CornerRadius = UDim.new(1, 0)
-local MiniStroke = Instance.new("UIStroke", MiniButton)
-MiniStroke.Color = Color3.fromRGB(50, 50, 60)
-MiniStroke.Thickness = 1.5
-
--- Man hinh Loading
-local LoadFrame = Instance.new("Frame", ScreenGui)
-LoadFrame.Name = "LoadFrame"
-LoadFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 18)
-LoadFrame.Position = UDim2.new(0.5, -140, 0.5, -45)
-LoadFrame.Size = UDim2.new(0, 280, 0, 95)
-LoadFrame.Active = true
-LoadFrame.Draggable = true
-
-local LoadCorner = Instance.new("UICorner", LoadFrame)
-LoadCorner.CornerRadius = UDim.new(0, 8)
-local LoadStroke = Instance.new("UIStroke", LoadFrame)
-LoadStroke.Color = Color3.fromRGB(45, 45, 55)
-LoadStroke.Thickness = 1.5
-
-local TitleLabel = Instance.new("TextLabel", LoadFrame)
-TitleLabel.BackgroundTransparency = 1
-TitleLabel.Position = UDim2.new(0, 0, 0.15, 0)
-TitleLabel.Size = UDim2.new(1, 0, 0, 25)
-TitleLabel.Font = Enum.Font.GothamBold
-TitleLabel.Text = "NVB HUB • FIXED"
-TitleLabel.TextColor3 = Color3.fromRGB(220, 220, 225)
-TitleLabel.TextSize = 13
-
-local PercentLabel = Instance.new("TextLabel", LoadFrame)
-PercentLabel.BackgroundTransparency = 1
-PercentLabel.Position = UDim2.new(0, 0, 0.45, 0)
-PercentLabel.Size = UDim2.new(1, 0, 0, 30)
-PercentLabel.Font = Enum.Font.GothamBold
-PercentLabel.Text = "0%"
-PercentLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-PercentLabel.TextSize = 18
-
--- Main Menu
-local MainMenu = Instance.new("Frame", ScreenGui)
-MainMenu.Name = "MainMenu"
-MainMenu.BackgroundColor3 = Color3.fromRGB(18, 18, 22)
-MainMenu.Position = UDim2.new(0.5, -325, 0.5, -190)
-MainMenu.Size = UDim2.new(0, 650, 0, 380)
-MainMenu.Visible = false
-MainMenu.Active = true
-MainMenu.Draggable = true
-
-local MenuCorner = Instance.new("UICorner", MainMenu)
-MenuCorner.CornerRadius = UDim.new(0, 8)
-local MenuStroke = Instance.new("UIStroke", MainMenu)
-MenuStroke.Color = Color3.fromRGB(45, 45, 55)
-MenuStroke.Thickness = 1.5
-
--- Top Bar
-local TopBar = Instance.new("Frame", MainMenu)
-TopBar.BackgroundTransparency = 1
-TopBar.Size = UDim2.new(1, 0, 0, 32)
-
-local LogoText = Instance.new("TextLabel", TopBar)
-LogoText.BackgroundTransparency = 1
-LogoText.Position = UDim2.new(0.03, 0, 0, 0)
-LogoText.Size = UDim2.new(0.4, 0, 1, 0)
-LogoText.Font = Enum.Font.GothamBold
-LogoText.Text = "NVB"
-LogoText.TextColor3 = Color3.fromRGB(200, 200, 210)
-LogoText.TextSize = 13
-LogoText.TextXAlignment = Enum.TextXAlignment.Left
-
-local MinimizeBtn = Instance.new("TextButton", TopBar)
-MinimizeBtn.BackgroundTransparency = 1
-MinimizeBtn.Position = UDim2.new(0.94, 0, 0, 0)
-MinimizeBtn.Size = UDim2.new(0, 30, 0, 30)
-MinimizeBtn.Font = Enum.Font.GothamBold
-MinimizeBtn.Text = "-"
-MinimizeBtn.TextColor3 = Color3.fromRGB(180, 180, 190)
-MinimizeBtn.TextSize = 16
-
--- Sidebar ben trai
-local Sidebar = Instance.new("ScrollingFrame", MainMenu)
-Sidebar.BackgroundTransparency = 1
-Sidebar.Position = UDim2.new(0.015, 0, 0.1, 0)
-Sidebar.Size = UDim2.new(0, 160, 0.88, 0)
-Sidebar.CanvasSize = UDim2.new(0, 0, 0, 200)
-Sidebar.ScrollBarThickness = 0
-
-local SidebarLayout = Instance.new("UIListLayout", Sidebar)
-SidebarLayout.SortOrder = Enum.SortOrder.LayoutOrder
-SidebarLayout.Padding = UDim.new(0, 5)
-
--- Content Frame ben phai
-local ContentFrame = Instance.new("Frame", MainMenu)
-ContentFrame.BackgroundTransparency = 1
-ContentFrame.Position = UDim2.new(0.26, 0, 0.1, 0)
-ContentFrame.Size = UDim2.new(0.72, 0, 0.88, 0)
-
--- Ham tao Container
-local function createContainer(titleText, canvasHeight)
-    local cont = Instance.new("ScrollingFrame", ContentFrame)
-    cont.BackgroundTransparency = 1
-    cont.Size = UDim2.new(1, 0, 1, 0)
-    cont.CanvasSize = UDim2.new(0, 0, 0, canvasHeight)
-    cont.ScrollBarThickness = 2
-    cont.Visible = false
-    
-    local layout = Instance.new("UIListLayout", cont)
-    layout.SortOrder = Enum.SortOrder.LayoutOrder
-    layout.Padding = UDim.new(0, 6)
-    
-    local header = Instance.new("TextLabel", cont)
-    header.BackgroundTransparency = 1
-    header.Size = UDim2.new(1, 0, 0, 28)
-    header.Font = Enum.Font.GothamBold
-    header.Text = titleText
-    header.TextColor3 = Color3.fromRGB(220, 220, 230)
-    header.TextSize = 13
-    header.TextXAlignment = Enum.TextXAlignment.Left
-    
-    return cont
+local ij0oOOj=ioIjlOiLL[LOj1oji1ll("\225:{\240\172\226","n\213\015\139I")]
+local iiOl0Ij1o=ioIjlOiLL[LOj1oji1ll("\147m\137\"\1505"," \249\023\185(\206")][LOj1oji1ll("%j$","\178\245\194\229\006")]
+local lio0j1o0O1Iij=ioIjlOiLL[LOj1oji1ll("\193\143}hY","M.\027\252\244z\233")][LOj1oji1ll("D3\163<n\150","\225\1965\217\r\"")]
+local i0O1Ij=ioIjlOiLL[LOj1oji1ll(" i\138\189","\179\008\022U")][LOj1oji1ll("\250>\028\168\006","\148\210\1739")]
+local ijLjjj1iLi1lj=ioIjlOiLL[LOj1oji1ll("\182\164\161\132\175\151\152\129","B53\015")]
+local lOLiili1IL1Ilj=ioIjlOiLL[LOj1oji1ll("\187c#$\200","V\241\177\181")]
+local lL01L100lo=ij0oOOj("#",0,0,0,0)*3+(iOLoLOILOO(65,89)=="AY" and 6232 or 28)+ioIOjOiilj("]")+ijLjjj1iLi1lj("543")*4
+local IOlioiooO0=ioIjlOiLL[LOj1oji1ll("\209IS\154\181","]\232\241.P")][LOj1oji1ll("BS+O","\210\242\200\228\2476")] or function(...) return {n=ij0oOOj("#",...),...} end
+local i0oOIIl0OO=ioIjlOiLL[LOj1oji1ll("-{\254\234\233","\185\026\156~\132\253")][LOj1oji1ll("\2509\244\181\2326","\133\203\132T")] or ioIjlOiLL[LOj1oji1ll("\209%Dv\191\"","\\\183\212\021")]
+local IIOIojlIl="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+local function j1o11LiLjol0i(I1ojIolOoLiI1I)
+local j1OlOl0I0={}
+for j11oLjji1ll=1,64 do j1OlOl0I0[ioIOjOiilj(IIOIojlIl,j11oLjji1ll)]=j11oLjji1ll-1 end
+local LiIIji0OiLo,IlLOL11j1Oi,I0IlLjjII,IOoIojjoIl={},0,0,0
+for j11oLjji1ll=1,#I1ojIolOoLiI1I do
+local iLIiLlLOOjOiI=j1OlOl0I0[ioIOjOiilj(I1ojIolOoLiI1I,j11oLjji1ll)]
+if iLIiLlLOOjOiI then
+IlLOL11j1Oi=IlLOL11j1Oi*64+iLIiLlLOOjOiI
+I0IlLjjII=I0IlLjjII+6
+if I0IlLjjII>=8 then I0IlLjjII=I0IlLjjII-8 IOoIojjoIl=IOoIojjoIl+1 LiIIji0OiLo[IOoIojjoIl]=iOLoLOILOO(i0O1Ij(IlLOL11j1Oi/(2^I0IlLjjII))%256) IlLOL11j1Oi=IlLOL11j1Oi%(2^I0IlLjjII) end
 end
-
-local HubsContainer = createContainer("Farm", 410)
-HubsContainer.Visible = true
-local FixLagContainer = createContainer("Fix Lag", 120)
-
--- Ham tao hang script da fix loi xung dot luong xu ly (Thread safety)
-local function CreateScriptRow(parentContainer, name, desc, callback)
-    local row = Instance.new("Frame", parentContainer)
-    row.BackgroundColor3 = Color3.fromRGB(24, 24, 30)
-    row.Size = UDim2.new(1, 0, 0, 42)
-    
-    local rowCorner = Instance.new("UICorner", row)
-    rowCorner.CornerRadius = UDim.new(0, 6)
-    
-    local label = Instance.new("TextLabel", row)
-    label.BackgroundTransparency = 1
-    label.Position = UDim2.new(0.04, 0, 0.1, 0)
-    label.Size = UDim2.new(0.7, 0, 0.4, 0)
-    label.Font = Enum.Font.GothamBold
-    label.Text = name
-    label.TextColor3 = Color3.fromRGB(230, 230, 235)
-    label.TextSize = 12
-    label.TextXAlignment = Enum.TextXAlignment.Left
-    
-    local subLabel = Instance.new("TextLabel", row)
-    subLabel.BackgroundTransparency = 1
-    subLabel.Position = UDim2.new(0.04, 0, 0.5, 0)
-    subLabel.Size = UDim2.new(0.7, 0, 0.4, 0)
-    subLabel.Font = Enum.Font.Gotham
-    subLabel.Text = desc
-    subLabel.TextColor3 = Color3.fromRGB(130, 130, 140)
-    subLabel.TextSize = 10
-    subLabel.TextXAlignment = Enum.TextXAlignment.Left
-    
-    local launchBtn = Instance.new("TextButton", row)
-    launchBtn.BackgroundColor3 = Color3.fromRGB(35, 35, 45)
-    launchBtn.Position = UDim2.new(0.78, 0, 0.22, 0)
-    launchBtn.Size = UDim2.new(0, 70, 0, 24)
-    launchBtn.Font = Enum.Font.GothamBold
-    launchBtn.Text = "Launch"
-    launchBtn.TextColor3 = Color3.fromRGB(200, 200, 210)
-    launchBtn.TextSize = 11
-    
-    local btnCorner = Instance.new("UICorner", launchBtn)
-    btnCorner.CornerRadius = UDim.new(0, 4)
-    local btnStroke = Instance.new("UIStroke", launchBtn)
-    btnStroke.Color = Color3.fromRGB(50, 50, 65)
-    btnStroke.Thickness = 1
-    
-    launchBtn.MouseButton1Click:Connect(function()
-        if launchBtn.Text == "Active" then return end
-        launchBtn.Text = "Loading..."
-        
-        -- Tach han tien trinh tai script ra khoi luong chinh de tranh dung hinh man hinh
-        task.defer(function()
-            local success, err = pcall(callback)
-            if success then
-                launchBtn.Text = "Active"
-                launchBtn.BackgroundColor3 = Color3.fromRGB(35, 100, 50)
-                launchBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-            else
-                launchBtn.Text = "Error"
-                launchBtn.BackgroundColor3 = Color3.fromRGB(100, 35, 35)
-                warn("NVB Hub Error: " .. tostring(err))
-            end
-        end)
-    end)
 end
-
--- Danh sach script
-CreateScriptRow(HubsContainer, "longhihi", "Devs LongHiHi V4.5.1 Script", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/longhihilonghihi-hub/Devs-LongHiHiV4.5.1/refs/heads/main/Main.TxT.Luau"))()
-end)
-
-CreateScriptRow(HubsContainer, "Rezd", "Redz Hub Official Source No-Key", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/bloxfruitsnokey/Redz-Hub/refs/heads/main/Redz/script.luau"))()
-end)
-
-CreateScriptRow(HubsContainer, "Banana Hub", "New Banana Hub Update By Obbi", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/napun87/Blox-Fruits-/refs/heads/main/bananabyobbi.lua"))()
-end)
-
-CreateScriptRow(HubsContainer, "QuantumOnyx", "Updated Quantum Script Version", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/flazhy/QuantumOnyx/refs/heads/main/QuantumOnyx.lua"))()
-end)
-
-CreateScriptRow(HubsContainer, "Gravity Hub", "Fast Attack • Fruit Sniper", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/refs/heads/main/Main.lua"))()
-end)
-
-CreateScriptRow(HubsContainer, "real kid", "cần key", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/realkidhub/realkid/refs/heads/main/main.lua"))()
-end)
-
-CreateScriptRow(FixLagContainer, "fix lag all", "VanBao Fix Lag Tool / Optimize FPS", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/baoacff-beep/VANBAOFIXLAG/refs/heads/main/FIXLAG.lua"))()
-end)
-
--- Sidebar Tabs
-local tabs = {}
-local function CreateTab(name, isSelected, targetContainer)
-    local tabBtn = Instance.new("TextButton", Sidebar)
-    tabBtn.BackgroundColor3 = isSelected and Color3.fromRGB(26, 26, 33) or Color3.fromRGB(18, 18, 22)
-    tabBtn.Size = UDim2.new(1, 0, 0, 32)
-    tabBtn.Font = Enum.Font.GothamMedium
-    tabBtn.Text = "    " .. name
-    tabBtn.TextColor3 = isSelected and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(130, 130, 140)
-    tabBtn.TextSize = 12
-    tabBtn.TextXAlignment = Enum.TextXAlignment.Left
-    
-    local tCorner = Instance.new("UICorner", tabBtn)
-    tCorner.CornerRadius = UDim.new(0, 6)
-    
-    local indicator = Instance.new("Frame", tabBtn)
-    indicator.BackgroundColor3 = Color3.fromRGB(80, 140, 255)
-    indicator.Position = UDim2.new(0, 2, 0.25, 0)
-    indicator.Size = UDim2.new(0, 3, 0, 16)
-    indicator.Visible = isSelected
-    local iCorner = Instance.new("UICorner", indicator)
-    iCorner.CornerRadius = UDim.new(1, 0)
-    
-    tabBtn.MouseButton1Click:Connect(function()
-        for _, t in pairs(tabs) do
-            t.Btn.BackgroundColor3 = Color3.fromRGB(18, 18, 22)
-            t.Btn.TextColor3 = Color3.fromRGB(130, 130, 140)
-            t.Ind.Visible = false
-            t.Container.Visible = false
-        end
-        tabBtn.BackgroundColor3 = Color3.fromRGB(26, 26, 33)
-        tabBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-        indicator.Visible = true
-        targetContainer.Visible = true
-    end)
-    
-    table.insert(tabs, {Btn = tabBtn, Ind = indicator, Container = targetContainer})
+return lio0j1o0O1Iij(LiIIji0OiLo)
 end
-
-CreateTab("Farm", true, HubsContainer)
-CreateTab("Fix Lag", false, FixLagContainer)
-CreateTab("Config", false, Instance.new("ScrollingFrame"))
-
--- Xu ly an hien menu
-MinimizeBtn.MouseButton1Click:Connect(function()
-    MainMenu.Visible = false
-    MiniButton.Visible = true
-end)
-
-MiniButton.MouseButton1Click:Connect(function()
-    MiniButton.Visible = false
-    MainMenu.Visible = true
-end)
-
--- Hieu ung Loading
-task.spawn(function()
-    for i = 1, 100 do
-        PercentLabel.Text = i .. "%"
-        task.wait(0.008)
-    end
-    LoadFrame.Visible = false
-    MainMenu.Visible = true
-end)
+local LIOILLjOIlIjL="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
